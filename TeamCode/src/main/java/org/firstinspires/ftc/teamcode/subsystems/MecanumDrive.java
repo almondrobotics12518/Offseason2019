@@ -33,7 +33,7 @@ public class MecanumDrive {
     double turnPower = 0;
 
     double lastAngle = 0;
-    double currentAngle = 0;
+    public double currentAngle = 0;
     double targetAngle;
 
     boolean isClockwise;
@@ -49,6 +49,11 @@ public class MecanumDrive {
     public double lastLbEnc;
     public double lastRfEnc;
     public double lastRbEnc;
+
+    double tarLf;
+    double tarLb;
+    double tarRf;
+    double tarRb;
 
     public double lfEnc;
     public double lbEnc;
@@ -86,7 +91,6 @@ public class MecanumDrive {
         updateBulkData();
         updateEncoders();
         updateAngle();
-
     }
 
     public void setPower(double lf, double lb, double rf, double rb){
@@ -94,6 +98,13 @@ public class MecanumDrive {
         leftBack.setPower(lb);
         rightFront.setPower(rf);
         rightBack.setPower(rb);
+    }
+
+    public void setEncoderTarget(int lf, int lb, int rf, int rb){
+        tarLb = lb;
+        tarLf = lf;
+        tarRf = rf;
+        tarRb = rb;
     }
 
     public void setTargetAngle(double angle){
