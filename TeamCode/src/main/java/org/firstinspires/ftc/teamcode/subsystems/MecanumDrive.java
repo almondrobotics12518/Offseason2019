@@ -25,8 +25,10 @@ public class MecanumDrive {
     Pose lastPose = new Pose(0,0,0);
     Pose currentPose = new Pose(0,0,0);
 
-    double turnKp = 0;
-    double turnKd = 0;
+    double slideKp = 0.001;
+
+    double turnKp = 0.02;
+    double turnKd = 0.001;
 
     double turnError = 0;
     double turnLastError = 0;
@@ -93,6 +95,11 @@ public class MecanumDrive {
         updateAngle();
     }
 
+    public void setTargetForward(double inches){
+        double ticks = inches / INCHES_PER_TICK;
+        setTargetEncoder(ticks,ticks,ticks,ticks);
+    }
+
     public void setPower(double lf, double lb, double rf, double rb){
         leftFront.setPower(lf);
         leftBack.setPower(lb);
@@ -100,11 +107,15 @@ public class MecanumDrive {
         rightBack.setPower(rb);
     }
 
-    public void setEncoderTarget(int lf, int lb, int rf, int rb){
+    public void setTargetEncoder(double lf, double lb, double rf, double rb){
         tarLb = lb;
         tarLf = lf;
         tarRf = rf;
         tarRb = rb;
+    }
+    
+    public void moveToPosition(){
+        setPower(((tarLf - lfEnc)*slideKp),((tarLb - lbEnc)*slideKp),((tarRf - rfEnc)*slideKp),((tarRb - rbEnc)*slideKp));
     }
 
     public void setTargetAngle(double angle){
@@ -119,7 +130,7 @@ public class MecanumDrive {
         }
     }
 
-    public void turn(){
+    public void turnToAngle(){
 
         if(!isClockwise){
             turnError = (((currentAngle-targetAngle)%360)+360)%360;
