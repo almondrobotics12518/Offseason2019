@@ -47,6 +47,11 @@ public class MecanumDrive {
 
     public RevBulkData bulkData1;
 
+    int lfPort;
+    int lbPort;
+    int rfPort;
+    int rbPort;
+
     public double lastLfEnc;
     public double lastLbEnc;
     public double lastRfEnc;
@@ -90,6 +95,11 @@ public class MecanumDrive {
         rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
         rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        lfPort = leftFront.getPortNumber();
+        lbPort = leftBack.getPortNumber();
+        rfPort = rightFront.getPortNumber();
+        rbPort = rightBack.getPortNumber();
+
         updateBulkData();
         updateEncoders();
         updateAngle();
@@ -125,9 +135,13 @@ public class MecanumDrive {
 
         if(errorR>errorL){
             isClockwise = false;
+            turnLastError = errorL;
         } else {
             isClockwise = true;
+            turnLastError = errorR;
         }
+
+
     }
 
     public void turnToAngle(){
@@ -135,17 +149,21 @@ public class MecanumDrive {
         if(!isClockwise){
             turnError = (((currentAngle-targetAngle)%360)+360)%360;
 
-            turnPower = (turnError * turnKp) + (turnLastError * turnKd);
+            turnPower = (turnError * turnKp) + ((turnError - turnLastError) * turnKd);
             setPower(turnPower,turnPower,-turnPower,-turnPower);
 
             turnLastError = turnError;
+
+            update();
         } else {
             turnError = (((targetAngle-currentAngle)%360)+360)%360;
 
-            turnPower = (turnError * turnKp) + (turnLastError * turnKd);
+            turnPower = (turnError * turnKp) + ((turnError - turnLastError) * turnKd);
             setPower(-turnPower,-turnPower,turnPower,turnPower);
 
             turnLastError = turnError;
+
+            update();
         }
     }
 
@@ -163,10 +181,10 @@ public class MecanumDrive {
         lastRbEnc = rbEnc;
         lastRfEnc = rfEnc;
 
-        lfEnc = bulkData1.getMotorCurrentPosition(0)-lfEncOffset;
-        lbEnc = bulkData1.getMotorCurrentPosition(1)-lbEncOffset;
-        rfEnc = bulkData1.getMotorCurrentPosition(2)-rfEncOffset;
-        rbEnc = bulkData1.getMotorCurrentPosition(3)-rbEncOffset;
+        lfEnc = bulkData1.getMotorCurrentPosition(lfPort)-lfEncOffset;
+        lbEnc = bulkData1.getMotorCurrentPosition(lbPort)-lbEncOffset;
+        rfEnc = bulkData1.getMotorCurrentPosition(rfPort)-rfEncOffset;
+        rbEnc = bulkData1.getMotorCurrentPosition(rbPort)-rbEncOffset;
     }
 
     public double getCurrentAngle(){
