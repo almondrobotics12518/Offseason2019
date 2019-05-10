@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.hardware;
+package org.firstinspires.ftc.teamcode.betterI2C;
 
 /*
   code taken from Acme robotics github issue.
