@@ -113,7 +113,7 @@ public class MecanumDrive {
         tarRf = rf;
         tarRb = rb;
     }
-    
+
     public void moveToPosition(){
         setPower(((tarLf - lfEnc)*slideKp),((tarLb - lbEnc)*slideKp),((tarRf - rfEnc)*slideKp),((tarRb - rbEnc)*slideKp));
     }
