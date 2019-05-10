@@ -22,8 +22,8 @@ import static org.firstinspires.ftc.teamcode.subsystems.DriveConstants.INCHES_PE
 
 public class MecanumDrive {
 
-    Pose lastPose = new Pose(0,0,0);
-    Pose currentPose = new Pose(0,0,0);
+    public Pose lastPose = new Pose(0,0,0);
+    public Pose currentPose = new Pose(0,0,0);
 
     double slideKp = 0.001;
 
