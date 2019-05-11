@@ -15,4 +15,6 @@
 apply from: '../build.common.gradle'
 dependencies {
     compile 'org.openftc:rev-extensions-2:1.1'
+    compile project(':DogeCV')
+    compile project(':openCVLibrary3')
 }

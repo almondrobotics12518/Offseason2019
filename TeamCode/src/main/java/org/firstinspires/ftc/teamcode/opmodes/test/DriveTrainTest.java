@@ -28,7 +28,7 @@ public class DriveTrainTest extends AlmondLinear {
         while(!isStopRequested() && drive.currentPose.x + drive.currentPose.y == 0 ){
             drive.moveToPosition();
         }
-        
+
         while(!isStopRequested()){
             drive.setPower(gamepad1.left_stick_y,gamepad1.left_stick_y,gamepad1.left_stick_y,gamepad1.left_stick_y);
             drive.update();
