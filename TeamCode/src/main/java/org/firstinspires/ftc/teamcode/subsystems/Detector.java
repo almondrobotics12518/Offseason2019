@@ -5,6 +5,8 @@ import com.disnodeteam.dogecv.DogeCV;
 import com.disnodeteam.dogecv.detectors.roverrukus.GoldDetector;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.opencv.core.Point;
+
 public class Detector {
 
     GoldDetector detector;
@@ -31,6 +33,11 @@ public class Detector {
 
     public void disable(){
         detector.disable();
+    }
+
+    public void setCrop(double top, double left, double bottom, double right){
+        detector.cropBRCorner = new Point(right,bottom);
+        detector.cropTLCorner = new Point(left,top);
     }
 
     public boolean isDetected(int width, int height){

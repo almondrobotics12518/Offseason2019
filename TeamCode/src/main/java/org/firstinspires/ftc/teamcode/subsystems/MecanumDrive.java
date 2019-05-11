@@ -75,10 +75,8 @@ public class MecanumDrive {
     public MecanumDrive(HardwareMap hardwareMap){
 
         RevExtensions2.init();
-        imu = LynxOptimizedI2cFactory.createLynxEmbeddedImu(hub1.getStandardModule(), 0);
-        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-        parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
-        imu.initialize(parameters);
+
+
 
         leftFront = hardwareMap.get(ExpansionHubMotor.class, "LeftFront");
         leftBack = hardwareMap.get(ExpansionHubMotor.class, "LeftBack");
@@ -103,6 +101,17 @@ public class MecanumDrive {
         updateBulkData();
         updateEncoders();
         updateAngle();
+    }
+
+    public void gyroInitialize(){
+        imu = LynxOptimizedI2cFactory.createLynxEmbeddedImu(hub1.getStandardModule(), 0);
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
+        imu.initialize(parameters);
+    }
+
+    public boolean isGyroCalibrated(){
+        return imu.isGyroCalibrated();
     }
 
     public void setTargetForward(double inches){
