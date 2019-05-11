@@ -5,9 +5,9 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Hang {
 
-    int latchTicks;
-    int unlatchTicks;
-    int prepareTicks;
+    int latchTicks = 12500;
+    int unlatchTicks = 12500;
+    int prepareTicks = 0;
 
 
     DcMotor hang;
@@ -18,17 +18,18 @@ public class Hang {
     }
 
     public void unlatch(){
-        hang.setTargetPosition(hang.getCurrentPosition()-12500);
+        hang.setTargetPosition(hang.getCurrentPosition()-unlatchTicks);
         hang.setPower(1);
     }
 
     public void latch(){
-        hang.setTargetPosition(hang.getCurrentPosition()+12500);
+        hang.setTargetPosition(hang.getCurrentPosition()+latchTicks);
         hang.setPower(1);
     }
 
     public void prepare(){
-        //TODO
         //Add position for prep at end of auto
+        hang.setTargetPosition(hang.getCurrentPosition()+prepareTicks);
+        hang.setPower(1);
     }
 }
