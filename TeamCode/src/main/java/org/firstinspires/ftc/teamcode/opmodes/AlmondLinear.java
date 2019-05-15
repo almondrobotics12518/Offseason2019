@@ -17,7 +17,6 @@ public abstract class AlmondLinear extends LinearOpMode{
         drive = new MecanumDrive(hardwareMap);
         detector = new Detector(hardwareMap);
 
-        teamMarker.init();
     }
 
 

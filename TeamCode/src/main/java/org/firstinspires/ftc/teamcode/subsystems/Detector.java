@@ -7,6 +7,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.opencv.core.Point;
 
+import static org.firstinspires.ftc.teamcode.subsystems.Detector.MineralPosition.RIGHT;
+
 public class Detector {
 
     GoldDetector detector;
@@ -48,5 +50,13 @@ public class Detector {
             return false;
         }
 
+    }
+
+    public MineralPosition getMineralPosition(){
+        return RIGHT;
+    }
+
+    public enum MineralPosition {
+        LEFT,RIGHT,MIDDLE
     }
 }

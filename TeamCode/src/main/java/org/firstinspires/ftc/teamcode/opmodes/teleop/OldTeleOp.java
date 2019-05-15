@@ -113,12 +113,7 @@ public class OldTeleOp extends LinearOpMode {
             armPosAngle = armPosTicks/TICKS_PER_DEGREE;
             armPowerOffset = Math.cos(Math.toRadians(armPosAngle))*0.25;
 */
-            armPosTicks = armLeft.getCurrentPosition();
-            if(gamepad2.left_stick_y == 0){
-                isSlideJoystickInput = false;
-            } else {
-                isSlideJoystickInput = true;
-            }
+
 
             leftStickY = -gamepad2.left_stick_y;
             slideY = -leftStickY*0.7;
