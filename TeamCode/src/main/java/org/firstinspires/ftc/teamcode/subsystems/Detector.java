@@ -11,15 +11,18 @@ import static org.firstinspires.ftc.teamcode.subsystems.Detector.MineralPosition
 
 public class Detector {
 
-    GoldDetector detector;
+    public GoldDetector detector;
 
     public Detector(HardwareMap hardwareMap){
         detector = new GoldDetector(); // Create detector
         detector.init(hardwareMap.appContext, CameraViewDisplay.getInstance(), DogeCV.CameraMode.FRONT,false); // Initialize it with the app context and camera
         detector.useDefaults(); // Set detector to use default settings
 
+        detector.cropTLCorner = new Point(200, 200); //Sets the top left corner of the new image, in pixel (x,y) coordinates
+        detector.cropBRCorner = new Point(400, 400);
+
         // Optional tuning
-        detector.downscale = 0.4; // How much to downscale the input frames
+        detector.downscale = 1; // How much to downscale the input frames
 
         detector.areaScoringMethod = DogeCV.AreaScoringMethod.MAX_AREA; // Can also be PERFECT_AREA
         //detector.perfectAreaScorer.perfectArea = 10000; // if using PERFECT_AREA scoring
@@ -37,9 +40,9 @@ public class Detector {
         detector.disable();
     }
 
-    public void setCrop(double top, double left, double bottom, double right){
-        detector.cropBRCorner = new Point(right,bottom);
-        detector.cropTLCorner = new Point(left,top);
+    public void setCrop(Point TLCorner, Point BRCorner){
+        detector.cropBRCorner = TLCorner;
+        detector.cropTLCorner = BRCorner;
     }
 
     public boolean isDetected(int width, int height){

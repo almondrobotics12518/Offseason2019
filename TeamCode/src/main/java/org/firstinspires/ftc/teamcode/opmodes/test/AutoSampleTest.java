@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.opmodes.AlmondLinear;
 import org.firstinspires.ftc.teamcode.subsystems.Detector;
+import org.opencv.core.Point;
 
 @Autonomous(name="Auto Camera Crop Test",group="test")
 public class AutoSampleTest extends AlmondLinear {
@@ -15,28 +16,21 @@ public class AutoSampleTest extends AlmondLinear {
 
 
         detector = new Detector(hardwareMap);
-        detector.setCrop(top,0,bottom,0);
+
         while(!isStarted() && !isStopRequested()){
             telemetry.addLine("Status -- Init Loop...");
             telemetry.update();
         }
 
-        if(!isStopRequested()){
+        if(isStopRequested()){
             return;
         }
 
+        waitForStart();
+
         detector.enable();
-        while(!isStopRequested()){
+        while(opModeIsActive()){
 
-            if(gamepad1.a){
-                bottom++;
-            }
-
-            if(gamepad1.b){
-                bottom--;
-            }
-
-            detector.setCrop(top,0,bottom,0);
 
             if(gamepad1.left_bumper){
                 detector.disable();
@@ -44,7 +38,7 @@ public class AutoSampleTest extends AlmondLinear {
             }
 
             telemetry.addLine("Detector Test - Press left bumper to disable detector");
-            telemetry.addLine("Crop top and bottom "+top +", "+bottom);
+            telemetry.addLine("CurrentPos"+detector.detector.getFoundRect().x+", "+detector.detector.getFoundRect().y);
             telemetry.update();
         }
         detector.disable();
