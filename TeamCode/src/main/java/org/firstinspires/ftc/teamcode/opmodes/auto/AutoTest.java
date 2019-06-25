@@ -11,6 +11,7 @@ public class AutoTest extends AlmondLinear{
     private Detector.MineralPosition position;
 
     public void runOpMode() throws InterruptedException {
+        /*
         initialize();
         detector.enable();
         teamMarker.init();
@@ -18,7 +19,7 @@ public class AutoTest extends AlmondLinear{
             position = detector.getMineralPosition();
             telemetry.addData("Mineral Position", position);
             telemetry.update();
-        }
+        }*/
     }
 
 }

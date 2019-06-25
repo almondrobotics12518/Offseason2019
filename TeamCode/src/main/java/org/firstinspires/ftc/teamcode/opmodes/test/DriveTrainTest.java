@@ -4,20 +4,20 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.opmodes.AlmondLinear;
 
-@Autonomous(name="Drive Train Test 1", group = "test")
+
 public class DriveTrainTest extends AlmondLinear {
 
     public void runOpMode() throws InterruptedException {
+/*
 
-        /*
             Initializes hardware in opmode
-         */
+
 
         initialize();
 
-        /*
+
             Init Loop
-         */
+
 
         while(!isStarted()){
             //yay
@@ -35,6 +35,7 @@ public class DriveTrainTest extends AlmondLinear {
             telemetry.addLine("Current Position"+drive.currentPose.x+", "+drive.currentPose.y+", "+drive.currentPose.theta);
             telemetry.update();
         }
+        */
 
 
     }

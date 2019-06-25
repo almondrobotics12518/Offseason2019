@@ -60,7 +60,7 @@ public class OldTeleOp extends LinearOpMode {
         double leftStickY;
         double slideY;
 
-        PIDFCoefficients armVelocityPid = new PIDFCoefficients(15,3,0,0);
+        //PIDFCoefficients armVelocityPid = new PIDFCoefficients(15,3,0,0);
         // Reversing direction of right side motors
         //leftBack.setDirection(DcMotorSimple.Direction.FORWARD);
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -78,8 +78,8 @@ public class OldTeleOp extends LinearOpMode {
         armRight.setDirection(DcMotorSimple.Direction.REVERSE);
         //armRight.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER,armVelocityPid);
         //mLeft.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER,armVelocityPid);
-        armLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        armRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //armLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //armRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         /*leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -130,10 +130,10 @@ public class OldTeleOp extends LinearOpMode {
 
 
 
-            leftFront.setPower(LF * 0.65); // Gives power to LF wheels
-            leftBack.setPower(LB * 0.65); // Gives power to LB wheels
-            rightFront.setPower(RF * 0.65); // Gives power to RF wheels
-            rightBack.setPower(RB * 0.65); // Gives power to RB wheels
+            leftFront.setPower(LF * 1); // Gives power to LF wheels
+            leftBack.setPower(LB * 1); // Gives power to LB wheels
+            rightFront.setPower(RF * 1); // Gives power to RF wheels
+            rightBack.setPower(RB * 1); // Gives power to RB wheels
 
             lScrew.setPower(gamepad1.right_trigger-gamepad1.left_trigger); // Gives power to the lScrew
 
@@ -148,10 +148,12 @@ public class OldTeleOp extends LinearOpMode {
             telemetry.addData("BackLeftPower",LB);
             telemetry.addData("BackRightPower",RB);
             telemetry.addData("Encoders --","------");
+            */
             telemetry.addData("LeftFront",leftFront.getCurrentPosition());
             telemetry.addData("LeftBack",leftBack.getCurrentPosition());
             telemetry.addData("RightFront",rightFront.getCurrentPosition());
             telemetry.addData("RightBack",rightBack.getCurrentPosition());
+            /*
             telemetry.addData("Hang",lScrew.getCurrentPosition());
             telemetry.addData("ArmLeft zeroPowerBehavior",armLeft.getZeroPowerBehavior());
             telemetry.addData("ArmRight zeroPowerBehavior", armRight.getZeroPowerBehavior());

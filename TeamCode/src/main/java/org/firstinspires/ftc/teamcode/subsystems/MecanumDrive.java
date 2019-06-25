@@ -106,7 +106,7 @@ public class MecanumDrive {
     public void gyroInitialize(){
         imu = LynxOptimizedI2cFactory.createLynxEmbeddedImu(hub1.getStandardModule(), 0);
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-        parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
+        parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         imu.initialize(parameters);
     }
 

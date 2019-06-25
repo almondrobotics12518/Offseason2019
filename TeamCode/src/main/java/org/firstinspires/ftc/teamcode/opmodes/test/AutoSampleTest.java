@@ -6,8 +6,9 @@ import org.firstinspires.ftc.teamcode.opmodes.AlmondLinear;
 import org.firstinspires.ftc.teamcode.subsystems.Detector;
 import org.opencv.core.Point;
 
-@Autonomous(name="Auto Camera Crop Test",group="test")
-public class AutoSampleTest extends AlmondLinear {
+
+public class AutoSampleTest {
+    /*
     Detector detector;
     public int bottom = 100;
     public int top = bottom+200;
@@ -42,5 +43,5 @@ public class AutoSampleTest extends AlmondLinear {
             telemetry.update();
         }
         detector.disable();
-    }
+    }*/
 }
