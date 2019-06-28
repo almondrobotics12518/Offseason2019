@@ -93,9 +93,9 @@ public class OldTeleOp extends LinearOpMode {
         while(opModeIsActive()){
             currentTime = timer.milliseconds();
             if(gamepad1.right_bumper){
-                rightMultiplier = 1;
+                rightMultiplier = 0.9;
             } else {
-                rightMultiplier = 0.5;
+                rightMultiplier = 0.6;
             }
             leftX = gamepad1.left_stick_x*1.2; // Reverse left joystick's X coordinate
             leftY = -gamepad1.left_stick_y; // Reverse left joystick's Y coordinate
@@ -130,10 +130,10 @@ public class OldTeleOp extends LinearOpMode {
 
 
 
-            leftFront.setPower(LF * 1); // Gives power to LF wheels
-            leftBack.setPower(LB * 1); // Gives power to LB wheels
-            rightFront.setPower(RF * 1); // Gives power to RF wheels
-            rightBack.setPower(RB * 1); // Gives power to RB wheels
+            leftFront.setPower(LF * rightMultiplier); // Gives power to LF wheels
+            leftBack.setPower(LB * rightMultiplier); // Gives power to LB wheels
+            rightFront.setPower(RF * rightMultiplier); // Gives power to RF wheels
+            rightBack.setPower(RB * rightMultiplier); // Gives power to RB wheels
 
             lScrew.setPower(gamepad1.right_trigger-gamepad1.left_trigger); // Gives power to the lScrew
 
@@ -153,8 +153,9 @@ public class OldTeleOp extends LinearOpMode {
             telemetry.addData("LeftBack",leftBack.getCurrentPosition());
             telemetry.addData("RightFront",rightFront.getCurrentPosition());
             telemetry.addData("RightBack",rightBack.getCurrentPosition());
-            /*
+
             telemetry.addData("Hang",lScrew.getCurrentPosition());
+            /*
             telemetry.addData("ArmLeft zeroPowerBehavior",armLeft.getZeroPowerBehavior());
             telemetry.addData("ArmRight zeroPowerBehavior", armRight.getZeroPowerBehavior());
             */
